@@ -14,14 +14,14 @@ import { Link } from "react-router-dom";
 const ItemsTable = () => {
   const [proyectos, setProyectos] = useState([]);
 
-  const proyectosCollection = collection(db, "preyectos");
+  const proyectosCollection = collection(db, "proyectos");
 
   const getProyectos = async () => {
     const data = await getDocs(proyectosCollection);
     setProyectos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
   const deleteProyecto = async (id) => {
-    const proyectoDoc = doc(db, "preyectos", id);
+    const proyectoDoc = doc(db, "proyectos", id);
     await deleteDoc(proyectoDoc);
     getProyectos();
   };

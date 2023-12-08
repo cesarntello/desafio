@@ -21,7 +21,7 @@ const Edit = () => {
   const navigate = useNavigate();
 
   const getProyectoById = async () => {
-    const proyectos = await getDoc(doc(db, "preyectos", id));
+    const proyectos = await getDoc(doc(db, "proyectos", id));
     const proyecto = proyectos.data();
     setProyecto(proyecto);
     setUbicacion(proyecto.ubicacion);
@@ -36,7 +36,7 @@ const Edit = () => {
     const proyectoActualizado = proyecto;
     proyectoActualizado.ubicacion = ubicacion;
 
-    const docRef = doc(db, "preyectos", id);
+    const docRef = doc(db, "proyectos", id);
     await updateDoc(docRef, proyectoActualizado);
 
     navigate("/");

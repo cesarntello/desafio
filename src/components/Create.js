@@ -17,7 +17,7 @@ const Create = () => {
   const [mapadesplegado, setMapadesplegado] = useState(false);
   const navigate = useNavigate();
 
-  const proyectoCollection = collection(db, "preyectos");
+  const proyectoCollection = collection(db, "proyectos");
   const handleMapNameChange = (name) => {
     setUbicacion(name);
   };
@@ -35,14 +35,7 @@ const Create = () => {
   return (
     <div>
       <h1>Crear proyecto</h1>
-      {/* <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      > */}
+
       <form onSubmit={proyectos}>
         {" "}
         <FormControl sx={{ m: 1, minWidth: 200 }}>
@@ -76,8 +69,6 @@ const Create = () => {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Estatus actual"
-            // placeholder="Seleccionar estatus"
-            // defaultValue="Estatus actual"
             value={estatus}
             onChange={(e) => setEstatus(e.target.value)}
           >
