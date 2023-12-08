@@ -10,8 +10,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Checkbox from "@mui/material/Checkbox";
-import Item from "./Item";
 import { Link } from "react-router-dom";
 const ItemsTable = () => {
   const [proyectos, setProyectos] = useState([]);
@@ -20,9 +18,7 @@ const ItemsTable = () => {
 
   const getProyectos = async () => {
     const data = await getDocs(proyectosCollection);
-    console.log(data);
     setProyectos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // console.log(proyectos);
   };
   const deleteProyecto = async (id) => {
     const proyectoDoc = doc(db, "preyectos", id);
@@ -75,8 +71,6 @@ const ItemsTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-
-      {/* <Item/> */}
     </div>
   );
 };

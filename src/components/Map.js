@@ -13,7 +13,7 @@ const API_LOCATION = "pk.4011a7183de0fdb3148f3f531e5d1642";
 export const Mapa = ({ onMapNameChange }) => {
   const [clicks, setClicks] = React.useState([]);
   const [name, setName] = React.useState("");
-  const [zoom, setZoom] = React.useState(3); // initial zoom
+  const [zoom, setZoom] = React.useState(3);
   const [center, setCenter] = React.useState({
     lat: 0,
     lng: 0,
@@ -57,43 +57,7 @@ export const Mapa = ({ onMapNameChange }) => {
         height: "100%",
         overflow: "auto",
       }}
-    >
-      {/* <label htmlFor="zoom">Zoom</label>
-      <input
-        type="number"
-        id="zoom"
-        name="zoom"
-        value={zoom}
-        onChange={(event) => setZoom(Number(event.target.value))}
-      />
-      <br />
-      <label htmlFor="lat">Latitude</label>
-      <input
-        type="number"
-        id="lat"
-        name="lat"
-        value={center.lat}
-        onChange={(event) =>
-          setCenter({ ...center, lat: Number(event.target.value) })
-        }
-      />
-      <br />
-      <label htmlFor="lng">Longitude</label>
-      <input
-        type="number"
-        id="lng"
-        name="lng"
-        value={center.lng}
-        onChange={(event) =>
-          setCenter({ ...center, lng: Number(event.target.value) })
-        }
-      />
-      <h3>{clicks.length === 0 ? "Click on map to add markers" : "Clicks"}</h3>
-      {clicks.map((latLng, i) => (
-        <pre key={i}>{JSON.stringify(latLng.toJSON(), null, 2)}</pre>
-      ))}
-      <button onClick={() => setClicks([])}>Clear</button> */}
-    </div>
+    ></div>
   );
 
   return (
@@ -114,9 +78,7 @@ export const Mapa = ({ onMapNameChange }) => {
               <Marker key={i} position={latLng} />
             ))}
           </Map>
-          {/* <h1>{name}</h1> */}
         </Wrapper>
-        {/* Basic form for controlling center and zoom of map. */}
         {form}
       </Container>
     </div>
@@ -133,8 +95,6 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
     }
   }, [ref, map]);
 
-  // because React does not do deep comparisons, a custom hook is used
-  // see discussion in https://github.com/googlemaps/js-samples/issues/946
   useDeepCompareEffectForMaps(() => {
     if (map) {
       map.setOptions(options);
@@ -162,8 +122,6 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
       <div ref={ref} style={style} />
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          // set the map prop on the child component
-          // @ts-ignore
           return React.cloneElement(child, { map });
         }
       })}
@@ -179,7 +137,6 @@ const Marker = (options) => {
       setMarker(new window.google.maps.Marker());
     }
 
-    // remove marker from map on unmount
     return () => {
       if (marker) {
         marker.setMap(null);
@@ -206,9 +163,6 @@ const deepCompareEqualsForMaps = createCustomEqual((deepEqual) => (a, b) => {
     return new window.maps.LatLng(a).equals(new window.google.maps.LatLng(b));
   }
 
-  // TODO extend to other types
-
-  // use fast-equals for other objects
   return deepEqual(a, b);
 });
 

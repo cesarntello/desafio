@@ -1,7 +1,6 @@
 import "./App.css";
 import Create from "./components/Create";
 import Edit from "./components/Edit";
-import Main from "./components/Main";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import ItemsTable from "./components/ItemsTable";
